@@ -19,7 +19,7 @@ SOC network:
 
 ## Current Status
 
-### Day 1 — Initialize Linux SOC lab architecture
+# Day 1 — Initialize Linux SOC lab architecture
 
 ### Completed
 
@@ -146,3 +146,41 @@ The authentication logs successfully recorded both successful and failed SSH act
 * `09-ssh-success.png`
 * `10-ssh-failure.png`
 * `11-syslog.png`
+
+
+# Day 3 — Auditd Monitoring
+
+Day 3 completed host-level security auditing on Ubuntu.
+
+### Completed
+
+* Auditd installed
+* Auditd enabled and running
+* Audit rules verified
+* `/home` write and attribute changes monitored
+* Controlled file activity generated
+* Audit event successfully verified
+
+### Audit Rule
+
+```text
+-w /home -p wa -k home_changes
+```
+
+### Telemetry Flow
+
+```text
+Ubuntu
+  ↓
+auditd
+  ↓
+/var/log/audit/audit.log
+  ↓
+Splunk
+```
+
+## Day 3 Evidence
+
+* `12-auditd-status.png`
+* `13-audit-rules.png`
+* `14-audit-events.png`
