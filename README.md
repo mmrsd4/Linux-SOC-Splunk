@@ -19,7 +19,9 @@ SOC network:
 
 ## Current Status
 
-### Day 1 — Completed
+### Day 1 — Initialize Linux SOC lab architecture
+
+### Completed
 
 * VMware lab network configured
 * Kali configured with `192.168.50.10`
@@ -106,3 +108,41 @@ Incident Response
   ↓
 Recovery
 ```
+
+# Day 2 — Ubuntu SSH & Linux Telemetry
+
+Day 2 completed the Ubuntu SSH configuration and Linux telemetry setup.
+
+### Completed
+
+* OpenSSH server installed and running
+* SSH enabled at boot
+* `socuser` created
+* Successful SSH login tested from Kali
+* Failed SSH login tested from Kali
+* `/var/log/auth.log` verified
+* `/var/log/syslog` verified
+
+### Validated Flow
+
+```text
+Kali 192.168.50.10
+        |
+        | SSH
+        v
+Ubuntu 192.168.50.30
+        |
+        +--> /var/log/auth.log
+        |
+        +--> /var/log/syslog
+```
+
+The authentication logs successfully recorded both successful and failed SSH activity.
+
+## Day 2 Evidence
+
+* `07-ssh-service.png`
+* `08-auth-log.png`
+* `09-ssh-success.png`
+* `10-ssh-failure.png`
+* `11-syslog.png`
