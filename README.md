@@ -9,7 +9,6 @@ A hands-on Linux Security Operations Center lab using Kali Linux, Ubuntu Server,
 | Kali Linux    | 192.168.50.10   | Attacker / Network Investigation |
 | Ubuntu Server | 192.168.50.30   | Monitored Linux Server           |
 | Splunk Server | 192.168.50.40   | SIEM / Detection                 |
-| Splunk Server | 192.168.126.151 | Secondary Network Interface      |
 
 SOC network:
 
@@ -184,3 +183,36 @@ Splunk
 * `12-auditd-status.png`
 * `13-audit-rules.png`
 * `14-audit-events.png`
+
+## Day 4 — Splunk Log Collection
+
+Configured centralized Linux log collection from Ubuntu `LINUX-SRV-01` to Splunk Enterprise.
+
+### Collected Logs
+
+- `/var/log/auth.log` → `linux_auth`
+- `/var/log/syslog` → `linux_syslog`
+- `/var/log/audit/audit.log` → `linux_audit`
+
+### Forwarding
+
+The Splunk Universal Forwarder forwards events to:
+
+`192.168.50.40:9997`
+
+The forwarding connection was verified as active.
+
+### Validation
+
+Splunk successfully received and indexed authentication, syslog, and auditd events from the Ubuntu server.
+
+Final combined validation returned **472 events**.
+
+### Evidence
+
+- `15-splunk-receiver.png`
+- `16-uf-status.png`
+- `17-splunk-auth-events.png`
+- `18-splunk-syslog-events.png`
+- `19-splunk-audit-events.png`
+- `20-log-pipeline-validation.png`

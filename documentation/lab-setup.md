@@ -7,7 +7,6 @@
 | Kali Linux    | kali          | 192.168.50.10/24   | eth0              |
 | Ubuntu Server | LINUX-SRV-01  | 192.168.50.30/24   | ens33             |
 | Splunk Server | splunk-SRV-01 | 192.168.50.40/24   | ens33             |
-| Splunk Server | splunk-SRV-01 | 192.168.126.151/24 | ens37             |
 
 The SOC lab uses the `192.168.50.0/24` network for communication between Kali, Ubuntu, and Splunk.
 
@@ -30,8 +29,6 @@ Splunk has a second network interface, `ens37`, with `192.168.126.151/24`.
 
 * Primary SOC IP: `192.168.50.40/24`
 * Interface: `ens33`
-* Secondary IP: `192.168.126.151/24`
-* Interface: `ens37`
 
 ## 3. Connectivity Validation
 
