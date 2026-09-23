@@ -1,0 +1,11 @@
+*.pcap
+*.pcapng
+
+incident-001-ssh-compromise.pcapng
+
+*.iso
+*.vmdk
+*.vmem
+*.vmsn
+
+.env

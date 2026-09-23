@@ -216,3 +216,21 @@ Final combined validation returned **472 events**.
 - `18-splunk-syslog-events.png`
 - `19-splunk-audit-events.png`
 - `20-log-pipeline-validation.png`
+
+## Day 5A — Wireshark Network Investigation
+
+Captured and investigated a normal SSH connection from Kali (`192.168.50.10`) to Ubuntu (`192.168.50.30`).
+
+Wireshark was used to examine:
+
+- SSH traffic over TCP port 22
+- TCP connection establishment
+- SSH TCP stream
+
+Evidence:
+
+- `21-wireshark-ssh-capture.png`
+- `22-wireshark-tcp-handshake.png`
+- `23-wireshark-ssh-stream.png`
+
+The raw PCAP is stored locally and is excluded from the Git repository.
