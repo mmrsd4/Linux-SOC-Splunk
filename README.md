@@ -234,3 +234,40 @@ Evidence:
 - `23-wireshark-ssh-stream.png`
 
 The raw PCAP is stored locally and is excluded from the Git repository.
+
+## Day 5B — SSH Attack Simulation and Detection
+
+Performed a controlled SSH authentication attack simulation from Kali (`192.168.50.10`) against Ubuntu (`192.168.50.30`).
+
+Hydra generated SSH authentication attempts against the `socuser` account.
+
+Ubuntu `auth.log` recorded five failed password attempts followed by a successful SSH authentication from the Kali workstation.
+
+### Splunk Detections
+
+The following detections were developed and validated:
+
+- SSH failed-authentication threshold detection
+- Successful SSH authentication detection
+- Chronological correlation of failed and successful SSH authentication
+
+The brute-force detection identified:
+
+- Source IP: `192.168.50.10`
+- User: `socuser`
+- Failed attempts: `5`
+
+The successful-login search returned authentication events for `socuser` from `192.168.50.10`.
+
+### Evidence
+
+- `24-hydra-ssh-attack.png`
+- `25-ubuntu-ssh-failures.png`
+- `26-ubuntu-successful-ssh.png`
+- `27-splunk-ssh-bruteforce-detection.png`
+- `28-splunk-successful-ssh.png`
+- `29-splunk-ssh-correlation.png`
+
+Detailed detection engineering documentation is available in:
+
+`documentation/detection-engineering.md`
