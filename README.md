@@ -271,3 +271,43 @@ The successful-login search returned authentication events for `socuser` from `1
 Detailed detection engineering documentation is available in:
 
 `documentation/detection-engineering.md`
+
+## Day 6 - Post-Compromise Investigation
+
+Performed a controlled post-compromise investigation of the Ubuntu Linux server.
+
+### Completed
+
+* Verified the compromised `socuser` SSH session
+* Performed Linux host and network enumeration
+* Confirmed `socuser` had no sudo privileges
+* Simulated SSH key persistence using `authorized_keys`
+* Monitored SSH persistence activity with auditd and Splunk
+* Created and monitored a synthetic sensitive-data file
+* Investigated SSH traffic using Wireshark
+* Correlated authentication, auditd, Splunk, and network evidence
+* Created an incident timeline
+
+### Evidence
+
+- `30-post-compromise-session.png`
+- `31-post-compromise-enumeration.png`
+- `32-socuser-sudo-check.png`
+- `33-ssh-persistence.png`
+- `33-ssh-persistence-audit.png`
+- `33-ssh-persistence-splunk.png`
+- `34-sensitive-file-access.png`
+- `35-splunk-sensitive-file-access.png`
+- `36-splunk-sensitive-file-path.png`
+- `38-wireshark-ssh-stream.png`
+
+### Documentation
+
+- `documentation/investigation.md`
+- `documentation/network-investigation.md`
+- `documentation/detection-engineering.md`
+- `documentation/threat-hunting.md`
+- `incident/timeline.md`
+
+The raw PCAP and private SSH keys were not committed to the repository.
+
