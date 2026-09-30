@@ -30,6 +30,11 @@ All timestamps below are taken from observed lab evidence. No timestamps are inf
 | 2026-09-24 15:57:21 | Ubuntu auditd | `socuser` successfully accessed `/srv/company-data/customer-data.txt` using `/usr/bin/cat` | `audit.log` / Splunk |
 | 2026-09-24 15:57:21 | Ubuntu auditd | Corresponding PATH record identified `/srv/company-data/customer-data.txt` | `audit.log` / Splunk |
 | 2026-09-24 16:10:12 | Ubuntu auditd | Temporary `sensitive_data` audit rule was removed | `audit.log` / Splunk |
+| 2026-09-30 20:09:16.243 | Ubuntu auditd / Splunk | Activity involving `/home/socuser/.ssh/authorized_keys.day7-backup` was recorded during containment | `audit.log` / Splunk |
+| 2026-09-30 20:09:16.322 | Ubuntu auditd / Splunk | Activity involving `/home/socuser/.ssh/authorized_keys` was recorded during containment | `audit.log` / Splunk |
+| 2026-09-30 20:10:52.174 | Ubuntu auditd / Splunk | Activity involving `/home/socuser/.ssh/soc_lab_key` was recorded during persistence eradication | `audit.log` / Splunk |
+| 2026-09-30 20:10:52.260 | Ubuntu auditd / Splunk | Activity involving `/home/socuser/.ssh/soc_lab_key.pub` was recorded during persistence eradication | `audit.log` / Splunk |
+| 2026-09-30 20:10:52.339 | Ubuntu auditd / Splunk | Activity involving `/home/socuser/.ssh/authorized_keys.day7-backup` was recorded during persistence eradication | `audit.log` / Splunk |
 
 ## Key Investigation Findings
 
@@ -141,5 +146,43 @@ The capture demonstrates TCP/22 SSH communication and the encrypted SSH stream. 
 ### Network Investigation
 
 - `screenshots/38-wireshark-ssh-stream.png`
+
+### Incident Response and Recovery
+
+- `screenshots/39-pre-remediation-state.png`
+- `screenshots/40-ssh-persistence-contained.png`
+- `screenshots/41-ssh-persistence-eradicated.png`
+- `screenshots/42-persistence-validation.png`
+- `screenshots/43-audit-remediation-events.png`
+- `screenshots/44-splunk-remediation-audit.png`
+- `screenshots/45-post-remediation-ssh-validation.png`
+
+## Incident Response and Recovery
+
+The Day 7 response validated the simulated SSH persistence state before remediation.
+
+The persistence mechanism was contained by removing the lab public-key entry from:
+
+`/home/socuser/.ssh/authorized_keys`
+
+The lab-generated persistence artifacts were subsequently removed:
+
+- `/home/socuser/.ssh/soc_lab_key`
+- `/home/socuser/.ssh/soc_lab_key.pub`
+- `/home/socuser/.ssh/authorized_keys.day7-backup`
+
+The final validation showed:
+
+- `authorized_keys` was 0 bytes
+- all three persistence artifacts were absent
+- SSH remained active
+- the temporary `sensitive_data` audit rule was absent
+- the persistent `home_changes` audit rule remained active
+
+Splunk received audit telemetry associated with the remediation activity.
+
+A subsequent password-based SSH connection from Kali to Ubuntu successfully authenticated as `socuser`, and the session verified `whoami=socuser` and `hostname=LINUX-SRV-01`.
+
+The response therefore demonstrated containment, eradication, telemetry validation, and recovery of legitimate SSH access within the controlled lab environment.
 
 Raw PCAP files and private SSH keys are intentionally excluded from the Git repository.

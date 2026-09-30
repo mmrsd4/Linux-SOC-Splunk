@@ -311,3 +311,47 @@ Performed a controlled post-compromise investigation of the Ubuntu Linux server.
 
 The raw PCAP and private SSH keys were not committed to the repository.
 
+
+## Day 7 - Incident Response and Recovery
+
+Performed a controlled incident-response and recovery exercise for the simulated SSH compromise.
+
+### Completed
+
+* Validated the pre-remediation SSH persistence state
+* Contained the simulated `authorized_keys` persistence entry
+* Removed the lab-generated SSH persistence key files
+* Removed the temporary remediation backup
+* Validated persistence eradication
+* Investigated auditd remediation telemetry
+* Confirmed remediation telemetry was ingested by Splunk
+* Validated legitimate password-based SSH access after remediation
+* Performed final system-state validation
+
+### Final State
+
+* `socuser` remained present
+* `/home/socuser/.ssh/authorized_keys` was empty
+* `soc_lab_key` was removed
+* `soc_lab_key.pub` was removed
+* `authorized_keys.day7-backup` was removed
+* SSH remained active
+* The temporary `sensitive_data` audit rule was absent
+* The `home_changes` audit rule remained active
+
+### Evidence
+
+- `39-pre-remediation-state.png`
+- `40-ssh-persistence-contained.png`
+- `41-ssh-persistence-eradicated.png`
+- `42-persistence-validation.png`
+- `43-audit-remediation-events.png`
+- `44-splunk-remediation-audit.png`
+- `45-post-remediation-ssh-validation.png`
+
+### Documentation
+
+- `documentation/incident-response.md`
+- `incident/timeline.md`
+
+The private SSH key and raw PCAP files were not committed to the repository.
